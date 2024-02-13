@@ -1,3 +1,5 @@
+![Resume Analyser CI](https://github.com/xl402/ResumeAnalyser/actions/workflows/resume_analyser.yaml/badge.svg?branch=main)
+
 # ResumeAnalyser
 ## Usage
 ```python
