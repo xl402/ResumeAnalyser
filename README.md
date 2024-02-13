@@ -34,7 +34,7 @@ from resume_analyser import ResumeAnalyser
 from resume_backtester import BackTester
 
 analyser = ResumeAnalyser()
-backtester = BackTester('labelled_resumes')
+backtester = BackTester('labelled_resumes_data_dir')
 result = backtester.run(analyser, regret_threshold=7.0)
 
 print(result.catastrophic_loss)
