@@ -49,7 +49,9 @@ print(result.score)
 ## Sending Request To Server
 
 ```python
+import base64
 import requests
+
 import fitz
 
 URL = # Server URL
