@@ -30,6 +30,8 @@ result.output_pdf.save('analysed_resume_output.pdf')
 
 ## Backtest
 ```python
+from resume_analyser import ResumeAnalyser
+from resume_backtester import BackTester
 
 analyser = ResumeAnalyser()
 backtester = BackTester('labelled_resumes')
