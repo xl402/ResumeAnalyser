@@ -12,7 +12,7 @@ client = TestClient(app)
 
 def test_resume_analyser_server_end_to_end(example_resume_path, tmp_path):
     files = {'file': ('example_resume.pdf', open(example_resume_path, 'rb'), 'application/pdf')}
-    response = client.post(f'/analyse-resume', files=files)
+    response = client.post('/analyse-resume', files=files)
     
     assert response.status_code == 200
     data = response.json()
