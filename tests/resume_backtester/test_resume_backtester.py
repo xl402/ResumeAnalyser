@@ -1,5 +1,3 @@
-import pandas as pd
-
 from resume_backtester.backtester import BackTester
 from resume_analyser import ResumeAnalyser
 
