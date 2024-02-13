@@ -10,9 +10,8 @@ from resume_analyser.server import app
 client = TestClient(app)
 
 
-def test_resume_analyser_server_end_to_end(example_resume_path, tmp_path):
-    files = {'file': ('example_resume.pdf', open(example_resume_path, 'rb'), 'application/pdf')}
-    response = client.post('/analyse-resume', files=files)
+def test_resume_analyser_server_end_to_end(payload):
+    response = client.post('/analyse-resume', files=payload)
     
     assert response.status_code == 200
     data = response.json()
@@ -21,9 +20,17 @@ def test_resume_analyser_server_end_to_end(example_resume_path, tmp_path):
     assert isinstance(data['score'], float)
     assert isinstance(data['output_pdf'], str)
 
+
+def test_resume_analyser_server_can_decode_output_pdf(payload, tmp_path):
+    response = client.post('/analyse-resume', files=payload)
+    data = response.json()
+
     pdf_content = base64.b64decode(data['output_pdf'])
-    output_pdf_path = tmp_path / "returned_resume.pdf"
-    with open(output_pdf_path, 'wb') as f:
-        f.write(pdf_content)
-    doc = fitz.open(str(output_pdf_path))
+    doc = fitz.open(stream=pdf_content, filetype='pdf')
     assert len(doc) > 0
+
+
+@pytest.fixture
+def payload(example_resume_path):
+    files = {'file': ('example_resume.pdf', open(example_resume_path, 'rb'), 'application/pdf')}
+    return files
