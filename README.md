@@ -13,6 +13,11 @@
 Must be able to backtest with known good / bad resumes
 
 ## Usage
+
+```sh
+PYTHONPATH="/ResumeAnalyser/src:$PYTHONPATH"
+```
+
 ```python
 import fitz
 
@@ -39,4 +44,21 @@ result = backtester.run(analyser, regret_threshold=7.0)
 
 print(result.catastrophic_loss)
 print(result.score)
+```
+
+## Sending Request To Server
+
+```python
+import requests
+import fitz
+
+URL = 'xxxxxxxxxxxx'
+
+files = {'file': ('example_resume.pdf', open(example_resume_path, 'rb'), 'application/pdf')}
+
+response = requests.post(f'{URL}/analyse-resume', files=payload)
+data = response.json()
+
+pdf_content = base64.b64decode(data['output_pdf'])
+doc = fitz.open(stream=pdf_content, filetype='pdf')
 ```
