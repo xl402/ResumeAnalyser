@@ -13,9 +13,9 @@
 Must be able to backtest with known good / bad resumes
 
 ## Usage
-
+Add the repo to your path
 ```sh
-PYTHONPATH="/ResumeAnalyser/src:$PYTHONPATH"
+PYTHONPATH="$PATH_TO_REPO/ResumeAnalyser/src:$PYTHONPATH"
 ```
 
 ```python
@@ -52,7 +52,7 @@ print(result.score)
 import requests
 import fitz
 
-URL = 'xxxxxxxxxxxx'
+URL = # Server URL
 
 files = {'file': ('example_resume.pdf', open(example_resume_path, 'rb'), 'application/pdf')}
 
